@@ -8,7 +8,6 @@
     "games-update": "index.js"
   },
   "scripts": {
-    "scaffold": "node ./scripts/scaffold.js",
     "test": "grunt test --verbose"
   },
   "author": "CloudKid <tools@cloudkid.com> (http://cloudkid.com/)",
