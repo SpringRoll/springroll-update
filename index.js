@@ -8,6 +8,8 @@ var glob = require('glob');
 var _ = require('lodash');
 var colors = require('colors');
 var game = require('./lib/game.js');
+var latest = require('latest');
+var p = require('./package.json');
 
 // The folder names to ignore
 var ignore = ['node_modules', 'KrakenWebsite', 'kraken-website'];
@@ -48,14 +50,31 @@ if (args.length === 2)
 	process.exit();
 }
 
-if (args.indexOf("--all") > -1 || args.indexOf("-a") > -1)
-{
-	_.each(games, processGame);
+// Check for the latest version of the library
+latest.checkupdate(p, function(ret, message) {
+	console.log(message.dim);
+	if (ret === 0) 
+	{
+		start();
+	}
+	else 
+	{
+		process.exit(ret);
+	}
+});
+
+function start()
+{	
+	if (args.indexOf("--all") > -1 || args.indexOf("-a") > -1)
+	{
+		_.each(games, processGame);
+	}
+	else if (games.indexOf(lastArg) > -1)
+	{
+		processGame(lastArg);
+	}
 }
-else if (games.indexOf(lastArg) > -1)
-{
-	processGame(lastArg);
-}
+
 
 function processGame(folder)
 {
