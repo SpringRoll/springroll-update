@@ -9,7 +9,8 @@ var _ = require('lodash');
 var colors = require('colors');
 var game = require('./lib/game.js');
 var latest = require('latest');
-var p = require('./package.json');
+var semver = require('semver');
+var p = require(path.join(__dirname, 'package.json'));
 
 // The folder names to ignore
 var ignore = ['node_modules', 'KrakenWebsite', 'kraken-website'];
@@ -25,7 +26,7 @@ console.log("\n----------------------- U P D A T E ---------------------\n".cyan
 // Loop through each folder and run the updates
 var games = glob.sync('*');
 var args = process.argv;
-var lastArg = args[args.length - 1];
+var lastArg = path.basename(args[args.length - 1]);
 
 if (args.length === 2)
 {
@@ -51,15 +52,16 @@ if (args.length === 2)
 }
 
 // Check for the latest version of the library
-latest.checkupdate(p, function(ret, message) {
-	console.log(message.dim);
-	if (ret === 0) 
+latest(p.name, function(err, v) {
+	if (semver.lt(p.version, v))
+	{
+		console.log((">> " + p.name + " is old ("+p.version+") a newer version ("+v+") is available").red);
+		console.log(">> [sudo] npm update -g pbskids-games-update\n".red);
+		process.exit(1);
+	}
+	else
 	{
 		start();
-	}
-	else 
-	{
-		process.exit(ret);
 	}
 });
 
