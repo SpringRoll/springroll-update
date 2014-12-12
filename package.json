@@ -1,0 +1,21 @@
+{
+  "name": "pbskids-games-update",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "pbskids-games-update": "node index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CloudKid <tools@cloudkid.com> (http://cloudkid.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "~1.0.3",
+    "execSync": "~1.0.2",
+    "glob": "~4.3.1",
+    "lodash": "~2.4.1"
+  }
+}
