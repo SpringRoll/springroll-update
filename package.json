@@ -1,38 +1,38 @@
 {
-  "name": "pbskids-games-update",
-  "version": "0.0.3",
-  "description": "Running major structural updates to games created with the PBSKidsGameTemplate.",
-  "main": "index.js",
-  "bin": {
-    "games-update": "index.js"
-  },
-  "scripts": {
-    "test": "grunt test --verbose"
-  },
-  "author": "CloudKid <tools@cloudkid.com> (http://cloudkid.com/)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SpringRoll/pbskids-games-update"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "colors": "~1.0.3",
-    "execSync": "~1.0.2",
-    "glob": "~4.3.1",
-    "latest": "^0.1.2",
-    "lodash": "~2.4.1",
-    "semver": "^4.1.0"
-  },
-  "devDependencies": {
-    "grunt-simple-version": "~0.2.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt": "~0.4.5"
-  },
-  "keywords": [
-    "gruntplugin",
-    "template",
-    "project",
-    "scaffolding",
-    "build"
-  ]
+	"name": "pbskids-games-update",
+	"version": "0.0.4",
+	"description": "Running major structural updates to games created with the PBSKidsGameTemplate.",
+	"main": "index.js",
+	"bin": {
+		"games-update": "index.js"
+	},
+	"scripts": {
+		"test": "grunt test --verbose"
+	},
+	"author": "CloudKid <tools@cloudkid.com> (http://cloudkid.com/)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SpringRoll/pbskids-games-update"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"colors": "~1.0.3",
+		"execSync": "~1.0.2",
+		"glob": "~4.3.1",
+		"latest": "^0.1.2",
+		"lodash": "~2.4.1",
+		"semver": "^4.1.0"
+	},
+	"devDependencies": {
+		"grunt-simple-version": "~0.2.0",
+		"grunt-contrib-jshint": "~0.10.0",
+		"grunt": "~0.4.5"
+	},
+	"keywords": [
+		"gruntplugin",
+		"template",
+		"project",
+		"scaffolding",
+		"build"
+	]
 }

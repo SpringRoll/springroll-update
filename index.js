@@ -17,10 +17,7 @@ var ignore = ['node_modules', 'KrakenWebsite', 'kraken-website'];
 
 var cwd = process.cwd();
 
-console.log("---------------------------------------------------------".cyan);
-console.log(" __   ___   ___   _   _      __    ___   ___   _     _   ".cyan);
-console.log("( (` | |_) | |_) | | | |\\ | / /`_ | |_) / / \\ | |   | |  ".cyan);
-console.log("_)_) |_|   |_| \\ |_| |_| \\| \\_\\_/ |_| \\ \\_\\_/ |_|__ |_|__".cyan);
+
 console.log("\n----------------------- U P D A T E ---------------------\n".cyan);
 
 // Loop through each folder and run the updates
@@ -103,13 +100,9 @@ function processGame(folder)
 				}
 			);
 		}
-		else if (args.indexOf('--update') > -1 || args.indexOf('-u') > -1)
+		if (args.indexOf('--update') > -1 || args.indexOf('-u') > -1)
 		{
 			game(path.join(cwd, folder));
-		}
-		else
-		{
-			console.log("Doing nothing.".red);
 		}
 		console.log("");
 	}
