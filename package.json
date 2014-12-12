@@ -1,8 +1,7 @@
 {
   "name": "pbskids-games-update",
   "version": "0.0.1",
-  "private": true,
-  "description": "",
+  "description": "Running major structural updates to games created with the PBSKidsGameTemplate.",
   "main": "index.js",
   "bin": {
     "games-update": "index.js"
