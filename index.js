@@ -41,7 +41,7 @@ if (args.length === 2)
 	console.log("games-update --all --update\n");
 	console.log("Update all games from Git".dim);
 	console.log("games-update --all --pull\n");
-	console.log("Update a single game from Git:".dim)
+	console.log("Update a single game from Git:".dim);
 	console.log("games-update --pull scrub-a-dub\n");
 	console.log("---------------------------------------------------------".dim);
 	console.log("\n");
@@ -92,4 +92,4 @@ function processGame(folder)
 		}
 		console.log("");
 	}
-};
+}
