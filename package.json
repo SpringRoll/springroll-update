@@ -1,6 +1,6 @@
 {
 	"name": "pbskids-games-update",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Running major structural updates to games created with the PBSKidsGameTemplate.",
 	"main": "index.js",
 	"bin": {
