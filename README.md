@@ -7,7 +7,7 @@ Running major structural updates to games created with the [PBSKidsGameTemplate]
 ## Usage
 
 ```bash
-games-update [--all] [--pull] [--update] [*]
+games-update [--all] [--pull] [--update=*] [*]
 ```
 
 ## Install
