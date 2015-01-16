@@ -30,6 +30,7 @@ console.log("\n----------------------- U P D A T E ---------------------\n".cyan
 // Loop through each folder and run the updates
 var games = glob.sync('*');
 var args = process.argv;
+
 var lastArg = path.basename(args[args.length - 1]);
 
 if (args.length === 2)
@@ -37,7 +38,6 @@ if (args.length === 2)
 	console.log("No arguments".red.bold);
 	console.log("---------------------------------------------------------".dim);
 	console.log("Arguments\n".bold);
-	console.log("--all or -a         Do all games in the current folder");
 	console.log("--update=[script]   Run the update script on the game");
 	console.log("--pull or -p        Update to master branch from Git origin");
 	console.log("[game]              The path to the game or folder");
@@ -71,7 +71,10 @@ latest(p.name, function(err, v) {
 
 function start()
 {
-	var matches = /--update=.+/.exec(args);
+	var matches = _.filter(args, function(a){
+		return /--update=.+/.exec(a);
+	});
+
 	if (matches)
 	{
 		var scriptPath = matches[0].replace("--update=", '');
@@ -87,7 +90,7 @@ function start()
 		script = require(scriptUri);
 	}
 
-	if (args.indexOf("--all") !== -1 && games.indexOf(lastArg) > -1)
+	if (games.indexOf(lastArg) > -1)
 	{
 		games = [lastArg];
 	}
