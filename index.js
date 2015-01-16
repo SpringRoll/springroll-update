@@ -13,7 +13,14 @@ var p = require(path.join(__dirname, 'package.json'));
 var script = null;
 
 // The folder names to ignore
-var ignore = ['node_modules', 'KrakenWebsite', 'kraken-website'];
+var ignore = [
+	'node_modules',
+	'KrakenWebsite',
+	'kraken-website',
+	'_patches',
+	'measurement-skillpack',
+	'measurement-skillpack-frontend'
+];
 
 var cwd = process.cwd();
 
@@ -80,13 +87,19 @@ function start()
 		script = require(scriptUri);
 	}
 
-	if (args.indexOf("--all") > -1 || args.indexOf("-a") > -1)
+	if (args.indexOf("--all") !== -1 && games.indexOf(lastArg) > -1)
 	{
-		_.each(games, processGame);
+		games = [lastArg];
 	}
-	else if (games.indexOf(lastArg) > -1)
+	nextGame();
+}
+
+function nextGame()
+{
+	if (games.length)
 	{
-		processGame(lastArg);
+		var folder = games.shift();
+		processGame(folder);
 	}
 }
 
@@ -112,13 +125,18 @@ function processGame(folder)
 					{
 						console.log(error.red);
 					}
+					nextGame();
 				}
 			);
 		}
 		if (script)
 		{
-			script(path.join(cwd, folder));
+			script(path.join(cwd, folder), nextGame);
 		}
 		console.log("");
+	}
+	else
+	{
+		nextGame();
 	}
 }
