@@ -75,7 +75,7 @@ function start()
 		return /--update=.+/.exec(a);
 	});
 
-	if (matches)
+	if (matches && matches.length)
 	{
 		var scriptPath = matches[0].replace("--update=", '');
 		var scriptUri = path.resolve(cwd, scriptPath);
