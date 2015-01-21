@@ -11,6 +11,7 @@ var latest = require('latest');
 var semver = require('semver');
 var p = require(path.join(__dirname, 'package.json'));
 var script = null;
+var command = null;
 
 // The folder names to ignore
 var ignore = [
@@ -23,7 +24,6 @@ var ignore = [
 ];
 
 var cwd = process.cwd();
-
 
 console.log("\n----------------------- U P D A T E ---------------------\n".cyan);
 
@@ -38,18 +38,19 @@ if (args.length === 2)
 	console.log("No arguments".red.bold);
 	console.log("---------------------------------------------------------".dim);
 	console.log("Arguments\n".bold);
-	console.log("--update=[script]   Run the update script on the game");
+	console.log("--update=[script]   Either a command line or a path");
+	console.log("                    to an update script to run");
 	console.log("--pull or -p        Update to master branch from Git origin");
 	console.log("[game]              The path to the game or folder");
 	console.log("                    must be the last argument.");
 	console.log("---------------------------------------------------------".dim);
 	console.log("Usage\n".bold);
 	console.log("Run the update script on all games".dim);
-	console.log("games-update --all --update=~/Desktop/patch.js\n");
+	console.log("games-update --update=~/Desktop/patch.js\n");
 	console.log("Update all games from Git".dim);
-	console.log("games-update --all --pull\n");
+	console.log("games-update -p\n");
 	console.log("Update a single game from Git:".dim);
-	console.log("games-update --pull scrub-a-dub\n");
+	console.log("games-update -p scrub-a-dub\n");
 	console.log("---------------------------------------------------------".dim);
 	console.log("\n");
 	process.exit();
@@ -77,17 +78,25 @@ function start()
 
 	if (matches && matches.length)
 	{
-		var scriptPath = matches[0].replace("--update=", '');
-		var scriptUri = path.resolve(cwd, scriptPath);
+		// Check for the update
+		var update = matches[0].replace("--update=", '');
 
-		if (!fs.existsSync(scriptUri))
+		if (/\.js$/.test(update))
 		{
-			console.log((">> The update script '" + scriptPath + "' doesn't exist").red);
-			console.log(scriptUri.red);
-			process.exit(1);
+			var scriptUri = path.resolve(cwd, update);
+			if (!fs.existsSync(scriptUri))
+			{
+				console.log((">> The update script '" + update + "' doesn't exist").red);
+				console.log(scriptUri.red);
+				process.exit(1);
+			}
+			console.log(scriptUri.blue);
+			script = require(scriptUri);
 		}
-		console.log(scriptUri.blue);
-		script = require(scriptUri);
+		else if (update.length) // make sure we have something
+		{
+			command = update;
+		}
 	}
 
 	if (games.indexOf(lastArg) > -1)
@@ -136,10 +145,31 @@ function processGame(folder)
 		{
 			script(path.join(cwd, folder), nextGame);
 		}
+		else if (command)
+		{
+			runCommand(command, path.join(cwd, folder), nextGame);
+		}
 		console.log("");
 	}
 	else
 	{
 		nextGame();
 	}
+}
+
+function runCommand(cmd, gamePath, completed)
+{
+	var path = require('path');
+	var exec = require('child_process').exec;
+	exec(cmd, {cwd: gamePath}, function (error, stdout, stderr) {
+	    console.log(gamePath.green);
+	    console.log(stdout);
+	    console.log(stderr);
+	    if (error !== null)
+	    {
+	    	console.log(String(error).red);
+	    }
+	    completed();
+	    console.log("Done.".gray);
+    });
 }
