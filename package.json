@@ -18,9 +18,9 @@
 	"dependencies": {
 		"colors": "~1.0.3",
 		"execSync": "~1.0.2",
-		"glob": "~4.3.1",
-		"latest": "^0.1.2",
-		"lodash": "~2.4.1",
+		"glob": "~5.0.3",
+		"latest": "^0.2.0",
+		"lodash": "~3.6.0",
 		"semver": "^4.1.0"
 	},
 	"devDependencies": {
