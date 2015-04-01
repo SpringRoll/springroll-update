@@ -1,10 +1,10 @@
 {
-	"name": "pbskids-games-update",
-	"version": "0.0.8",
-	"description": "Running major structural updates to games created with the PBSKidsGameTemplate.",
+	"name": "springroll-update",
+	"version": "0.1.0",
+	"description": "Running major structural updates to games",
 	"main": "index.js",
 	"bin": {
-		"games-update": "index.js"
+		"springroll-update": "index.js"
 	},
 	"scripts": {
 		"test": "grunt test --verbose"
@@ -12,7 +12,7 @@
 	"author": "CloudKid <tools@cloudkid.com> (http://cloudkid.com/)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/SpringRoll/pbskids-games-update"
+		"url": "https://github.com/SpringRoll/springroll-update"
 	},
 	"license": "MIT",
 	"dependencies": {

@@ -1,5 +1,5 @@
 /*
- * pbskids-game-update
+ * springroll-update
  *
  * Copyright (c) 2014 CloudKid
  * Licensed under the MIT license.
