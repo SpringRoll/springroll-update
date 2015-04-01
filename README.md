@@ -14,10 +14,10 @@ sudo npm install -g springroll-update
 
 ## Usage
 
-Open the directory which contains all your projects and run the `games-update` command. Below is the format of the script arguments.
+Open the directory which contains all your projects and run the `springroll-update` command. Below is the format of the script arguments.
 
 ```bash
-games-update [--pull|-p] [--update=*] [*]
+springroll-update [--pull|-p] [--update=*] [*]
 ```
 
 ### Examples 
@@ -35,7 +35,7 @@ springroll-update -p
 To run a custom bash script, set it as the update argument.
 
 ```bash
-games-update --update="grunt clean config manifest default"
+springroll-update --update="grunt clean config manifest default"
 ```
 
 #### Custom Update Script
