@@ -61,7 +61,7 @@ latest(p.name, function(err, v) {
 	if (semver.lt(p.version, v))
 	{
 		console.log((">> " + p.name + " is old ("+p.version+") a newer version ("+v+") is available").red);
-		console.log(">> [sudo] npm update -g pbskids-games-update\n".red);
+		console.log(">> [sudo] npm update -g springroll-update\n".red);
 		process.exit(1);
 	}
 	else
