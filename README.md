@@ -4,35 +4,61 @@ springroll-update
 
 Running major structural updates to games.
 
-## Usage
+## Install
+
+Install using NPM. Make sure to install globally.
 
 ```bash
-springroll-update [-p] [--update=*] [*]
+sudo npm install -g springroll-update
 ```
 
+## Usage
+
+Open the directory which contains all your projects and run the `games-update` command. Below is the format of the script arguments.
+
+```bash
+games-update [--pull|-p] [--update=*] [*]
+```
+
+### Examples 
+
+####Git Pull All
+
+To update all games from Git. This would be like called `git pull master origin` from each folder. 
+
+```bash
+springroll-update -p
+```
+
+#### Custom Command
+
+To run a custom bash script, set it as the update argument.
+
+```bash
+games-update --update="grunt clean config manifest default"
+```
+
+#### Custom Update Script
+
 For example, to run a patch on all games:
+
 ```bash
 springroll-update --update=patch.js
 ```
 
 **patch.js**
 ```js
-module.exports = function(gamePath, done)
+module.exports = function(gamePath, completed)
 {
   // do something to the game
   // where gamePath is the full
   // system path to the root
   // game folder.
-
-  // Call done when we're finished
-  done();
+  
+  // When done, call completed
+  // this can be useful for doing async updates
+  completed();
 };
-```
-
-## Install
-
-```bash
-sudo npm install -g springroll-update
 ```
 
 ## License
